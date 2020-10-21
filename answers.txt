@@ -5,7 +5,17 @@ SELECT title, release_date FROM movies WHERE release_date BETWEEN '1983-01-01' A
 SELECT movies.title, AVG(ratings.rating) AS average FROM ratings JOIN movies ON ratings.movie_id=movies.id GROUP BY ratings.movie_id ORDER BY average ASC; 
 
 3.List the unique records for Sci-Fi movies where male 24-year-old students have given 5-star ratings.
-
+SELECT DISTINCT  movies.title, users.age,users.gender,ratings.rating, genres.name FROM movies
+INNER JOIN ratings ON movies.id = ratings.movie_id
+INNER JOIN users ON users.id = ratings.user_id
+INNER JOIN occupations ON users.occupation_id = occupations.id
+INNER JOIN genres_movies ON genres_movies.movie_id = movies.id
+INNER JOIN genres ON genres_movies.genre_id = genres.id
+WHERE genres.name ='Sci-Fi'
+AND occupations.name ='Student'
+AND users.age = 24
+AND users.gender ='m'
+AND ratings.rating =5;
 
 4.List the unique titles of each of the movies released on the most popular release day.
 
