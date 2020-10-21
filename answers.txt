@@ -2,7 +2,7 @@
 SELECT title, release_date FROM movies WHERE release_date BETWEEN '1983-01-01' AND '1993-12-31' ORDER BY release_date DESC;
 
 2.Without using LIMIT, list the titles of the movies with the lowest average rating.
-
+SELECT movies.title, AVG(ratings.rating) AS average FROM ratings JOIN movies ON ratings.movie_id=movies.id GROUP BY ratings.movie_id ORDER BY average ASC; 
 
 3.List the unique records for Sci-Fi movies where male 24-year-old students have given 5-star ratings.
 
